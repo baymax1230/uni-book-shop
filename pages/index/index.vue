@@ -1,6 +1,7 @@
 <template>
-	<view class="content">
+	<view class="content" @click="a">
 		首页
+		
 			</view>
 </template>
 
@@ -11,11 +12,31 @@
 				title: 'Hello'
 			}
 		},
-		onLoad() {
-
-		},
+		
 		methods: {
-
+       
+		},
+		async onLoad() {
+		// try{
+		// 	let res = await uni.$u.http.get('/api/goods')
+		// }catch(e){
+		// 	console.log(e)
+			
+		// }
+		// let res = await uni.$u.http.patch('api/orders/1/confirm',{name:'Tom'})
+		// console.log(res)
+		const data = {
+			email:"test@a.com",
+			password:'123123'
+		}
+		const res = await this.$u.api.authLogin()
+		console.log(res)
+		// uni.$u.http.get('/api/goods').then(res =>{
+		// 	console.log(res)
+		// }).catch(err =>{
+		// 	console.log(err)
+		// })
+		
 		}
 	}
 </script>
@@ -35,6 +56,7 @@
 		margin-left: auto;
 		margin-right: auto;
 		margin-bottom: 50rpx;
+		
 	}
 
 	.text-area {

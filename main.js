@@ -1,23 +1,25 @@
 import App from './App'
-
-// #ifndef VUE3
 import Vue from 'vue'
-import uView from '@/uni_modules/uview-ui'
-Vue.use(uView)
 Vue.config.productionTip = false
 App.mpType = 'app'
+
+
+
+
+
 const app = new Vue({
     ...App
 })
-app.$mount()
-// #endif
 
-// #ifdef VUE3
-import { createSSRApp } from 'vue'
-export function createApp() {
-  const app = createSSRApp(App)
-  return {
-    app
-  }
-}
-// #endif
+import uView from '@/uni_modules/uview-ui'
+Vue.use(uView)
+
+require('@/config/request')(app)
+
+// http接口API集中管理引入部分
+import httpApi from '@/config/http.api.js'
+Vue.use(httpApi, app)
+
+
+
+app.$mount()
